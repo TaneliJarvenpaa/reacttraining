@@ -8,6 +8,7 @@ function App() {
   const addTodo=(event) =>{
     event.preventDefault();
     setTodos([...todos, todo]);
+   
 
   }
   
@@ -16,13 +17,18 @@ function App() {
   const inputChanged=(event)=>{
     setTodo({...todo, [event.target.name]: event.target.value});
   }
+  
+
+  const deleteTodo=(index)=>{
+    setTodos(todos.filter((todo, i) => i !== index))
+  }
 
 
     return (
     <div className="App">
       <header className="App-header">Simple TodoList</header>
 
-      <form className="form" onSubmit={addTodo}>
+      <form className="form" >
       <fieldset>
     <legend>
       <h2>
@@ -36,11 +42,11 @@ function App() {
         <label>Date:
                 <input type="date" name="date" value={todo.date} onChange={inputChanged}/>
         </label>
-        <input type="submit" value="Add" />
+        <input type="submit" value="Add" onClick={addTodo}/>
         </fieldset>
       </form>
       
-      <table>
+      <table >
         <thead>
           <tr>
             <th>Decription</th>
@@ -49,10 +55,12 @@ function App() {
         </thead>
         <tbody>
           {todos.map((todo, index) =>
-          <tr key={index}>
+          <tr key={index} >
             <td>{todo.desc}</td>
-            <td>{todo.date}</td>
-          </tr>
+            <td>{todo.date}
+            </td>
+            <td><input type="submit" onClick={()=>deleteTodo(index)} value="Delete" /></td>
+            </tr>
           )}
         </tbody>
       </table>
