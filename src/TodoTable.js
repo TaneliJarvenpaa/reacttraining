@@ -14,9 +14,11 @@ import App from './App';
         <tbody>
           {props.todos.map((todo, index) =>
           <tr key={index} >
+            
             <td>{todo.desc}</td>
-            <td>{todo.date}
-            </td>
+            <td>{todo.date}</td>
+            <td>{todo.priority}</td>
+            
             <td><input type="submit" onClick={()=>props.deleteTodo(index)} value="Delete" /></td>
             </tr>
           )}
