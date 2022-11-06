@@ -46,13 +46,9 @@ function Todolist() {
   const addTodo = (event) => {
     setTodos([...todos, todo]);
     setTodo({description: '', date: '', priority: ''});
-  }
-  const yourChangeDateFunc = (event) => { 
     
-      todo.date =setTodos([...todos, todo.date]);
-      
-      
-    }
+  }
+ 
   const columns = [  
     { field: "description", sortable: true, filter: true,floatingFilter: true,animateRows:true },  
     { field: "date", sortable: true, filter: true,floatingFilter: true,animateRows:true  },  
@@ -80,8 +76,11 @@ function Todolist() {
       <DesktopDatePicker
           label="Date"
           value={todo.date}
+          inputFormat="dd.MM.yyyy"
+          onChange={(newValue) => {
+            setTodo({...todo, date: newValue});
+          }}
           
-          onChange={date => yourChangeDateFunc(date)}
           renderInput={(params) => <TextField {...params} />}
         />
           </LocalizationProvider>
